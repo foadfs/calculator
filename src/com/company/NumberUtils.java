@@ -4,37 +4,18 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class NumberUtils {
-    public static void menu() {
+    Scanner scanner;
+    public void menu() {
         String select;
         System.out.println("1-continue\n2-Exit");
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         select = scanner.nextLine();
         switch (select) {
             case "1":
                 int a = 0, b = 0, c = 0;
                 String o = "";
-                boolean retry = false;
-                while (!retry) {
-                    try {
-                        System.out.println("enter first number:");
-                        a = Integer.parseInt(scanner.nextLine());
-                        retry = true;
-                    } catch (NumberFormatException e) {
-                        retry = false;
-                        System.out.println("That is not a number, please try again. ");
-                    }
-                }
-                retry = false;
-                while (!retry) {
-                    try {
-                        System.out.println("enter second number:");
-                        b = Integer.parseInt(scanner.nextLine());
-                        retry = true;
-                    } catch (NumberFormatException e) {
-                        retry = false;
-                        System.out.println("That is not a number, please try again. ");
-                    }
-                }
+                a = getNumber("enter first number:");
+                b = getNumber("enter second number:");
                 System.out.println("enter operation:");
                 o = scanner.nextLine();
                 switch (o) {
@@ -70,4 +51,21 @@ public class NumberUtils {
                 break;
         }
     }
+
+    private int getNumber(String message) {
+        int a = 0;
+        boolean retry = false;
+        while (!retry) {
+            try {
+                System.out.println(message);
+                a = Integer.parseInt(scanner.nextLine());
+                retry = true;
+            } catch (NumberFormatException e) {
+                retry = false;
+                System.out.println("That is not a number, please try again. ");
+            }
+        }
+        return a;
+    }
+
 }
