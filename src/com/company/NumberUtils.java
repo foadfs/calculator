@@ -1,10 +1,10 @@
 package com.company;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class NumberUtils {
     Scanner scanner;
+
     public void menu() {
         String select;
         System.out.println("1-continue\n2-Exit");
@@ -16,40 +16,25 @@ public class NumberUtils {
                 String o = "";
                 a = getNumber("enter first number:");
                 b = getNumber("enter second number:");
-                System.out.println("enter operation:");
-                o = scanner.nextLine();
-                switch (o) {
-                    case "+":
-                        System.out.println("Addition of " + a + " and " + b + " : " + (a + b));
-                        break;
-                    case "-":
-                        System.out.println("Subtraction of " + a + " and " + b + " : " + (a - b));
-                        break;
-                    case "*":
-                        System.out.println("Multiplication of " + a + " and " + b + " : " + (a * b));
-                        break;
-                    case "/":
-                        try {
-                            System.out.println("Division of " + a + " and " + b + " : " + (a / b));
-                        } catch (ArithmeticException ae) {
-                            System.out.println("ArithmeticException occurred!");
-                        }
-                        break;
-                    case "%":
-                        System.out.println("Modulo of " + a + " and " + b + " : " + (a % b));
-                        break;
-                    default:
-                        System.out.println("Please Enter '+', '-', '*', '/' & '%' operator only.");
-                }
+                String opr = getOperation();
                 break;
             case "2":
                 System.exit(1);
                 break;
-
             default:
                 System.out.println("1-continue\n2-Exit");
                 break;
         }
+    }
+
+    private String getOperation() {
+        String operation = "";
+        while (!operation.equals("+") && !operation.equals("-") && !operation.equals("/") && !operation.equals("*") &&
+                !operation.equals("%")) {
+            System.out.println("please enter your operation: ");
+            operation = scanner.nextLine();
+        }
+        return operation;
     }
 
     private int getNumber(String message) {
