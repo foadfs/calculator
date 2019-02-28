@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class NumberUtils {
     Scanner scanner;
-
+    String operation="" ;
+    int firstNumber = 0, secondNumber = 0, result = 0;
     public void menu() {
         String select;
         System.out.println("1-continue\n2-Exit");
@@ -12,11 +13,9 @@ public class NumberUtils {
         select = scanner.nextLine();
         switch (select) {
             case "1":
-                int a = 0, b = 0, c = 0;
-                String o = "";
-                a = getNumber("enter first number:");
-                b = getNumber("enter second number:");
-                String opr = getOperation();
+                firstNumber = getNumber("enter first number:");
+                secondNumber= getNumber("enter second number:");
+                operation = getOperation();
                 break;
             case "2":
                 System.exit(1);
@@ -28,11 +27,9 @@ public class NumberUtils {
     }
 
     private String getOperation() {
-        String operation = "";
         while (!operation.equals("+") && !operation.equals("-") && !operation.equals("/") && !operation.equals("*") &&
                 !operation.equals("%")) {
-            System.out.println("please enter your operation: ");
-            operation = scanner.nextLine();
+            getoper();
         }
         return operation;
     }
@@ -53,4 +50,36 @@ public class NumberUtils {
         return a;
     }
 
+    private String getoper(){
+        System.out.println("please enter your operation: ");
+        operation = scanner.nextLine();
+        switch (operation) {
+            case "+":
+                result=firstNumber+secondNumber;
+                System.out.println(messageOper("+"));
+            break;
+            case "-":
+                result=firstNumber-secondNumber;
+                System.out.println(messageOper("-"));
+            break;
+            case "*":
+                result=firstNumber*secondNumber;
+                System.out.println(messageOper("*"));
+            break;
+            case "/":
+                result=firstNumber/secondNumber;
+                System.out.println(messageOper("/"));
+            break;
+            case "%":
+                result=firstNumber%secondNumber;
+                System.out.println(messageOper("%"));
+            default:
+                System.out.println("\n Please enter only '/' or '*' or '-' or '+' or '%'"); }
+        return operation;
+    }
+
+    private String messageOper(String messageopera){
+        String mss=firstNumber+messageopera+secondNumber+"="+result;
+   return mss;
+    }
 }
