@@ -7,11 +7,11 @@ public class NumberUtils {
     String operation="" ;
     int firstNumber = 0, secondNumber = 0, result = 0;
     public void menu() {
-        String select;
-        System.out.println("1-continue\n2-Exit");
+        String option;
+        System.out.println("menu:\n1-continue\n2-Exit");
         scanner = new Scanner(System.in);
-        select = scanner.nextLine();
-        switch (select) {
+        option = scanner.nextLine();
+        switch (option) {
             case "1":
                 firstNumber = getNumber("enter first number:");
                 secondNumber= getNumber("enter second number:");
@@ -21,7 +21,7 @@ public class NumberUtils {
                 System.exit(1);
                 break;
             default:
-                System.out.println("1-continue\n2-Exit");
+                System.out.println("menu:\n1-continue\n2-Exit");
                 break;
         }
     }
@@ -29,7 +29,35 @@ public class NumberUtils {
     private String getOperation() {
         while (!operation.equals("+") && !operation.equals("-") && !operation.equals("/") && !operation.equals("*") &&
                 !operation.equals("%")) {
-            getoper();
+            System.out.println("please enter your operation: ");
+            operation = scanner.nextLine();
+            switch (operation) {
+                case "+":
+                    result=firstNumber+secondNumber;
+                    System.out.println(messageOper("+"));
+                    break;
+                case "-":
+                    result=firstNumber-secondNumber;
+                    System.out.println(messageOper("-"));
+                    break;
+                case "*":
+                    result=firstNumber*secondNumber;
+                    System.out.println(messageOper("*"));
+                    break;
+                case "/":
+                    try {
+                        result = firstNumber / secondNumber;
+                        System.out.println(messageOper("/"));
+                    }catch (ArithmeticException e){
+                        System.out.println("you can not divided by zero! ");
+                    }
+                    break;
+                case "%":
+                    result=firstNumber%secondNumber;
+                    System.out.println(messageOper("%"));
+                default:
+                    System.out.println("\n Please enter only '/' or '*' or '-' or '+' or '%'"); }
+            return operation;
         }
         return operation;
     }
@@ -49,35 +77,6 @@ public class NumberUtils {
         }
         return a;
     }
-
-    private String getoper(){
-        System.out.println("please enter your operation: ");
-        operation = scanner.nextLine();
-        switch (operation) {
-            case "+":
-                result=firstNumber+secondNumber;
-                System.out.println(messageOper("+"));
-            break;
-            case "-":
-                result=firstNumber-secondNumber;
-                System.out.println(messageOper("-"));
-            break;
-            case "*":
-                result=firstNumber*secondNumber;
-                System.out.println(messageOper("*"));
-            break;
-            case "/":
-                result=firstNumber/secondNumber;
-                System.out.println(messageOper("/"));
-            break;
-            case "%":
-                result=firstNumber%secondNumber;
-                System.out.println(messageOper("%"));
-            default:
-                System.out.println("\n Please enter only '/' or '*' or '-' or '+' or '%'"); }
-        return operation;
-    }
-
     private String messageOper(String messageopera){
         String mss=firstNumber+messageopera+secondNumber+"="+result;
    return mss;
