@@ -17,6 +17,7 @@ public class NumberUtils {
         option = scanner.nextLine();
         switch (option) {
             case "1":
+
                 firstNumber = getNumber("enter first number:");
                 secondNumber= getNumber("enter second number:");
                 operation = getOperation();
