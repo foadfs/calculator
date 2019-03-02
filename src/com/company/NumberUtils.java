@@ -70,9 +70,12 @@ public class NumberUtils {
     private void writeFile(String str){
         try {
             File file= new File(path);
-            FileWriter fileWriter=new FileWriter(file);
+            FileWriter fileWriter=new FileWriter(file,true);
             BufferedWriter out = new BufferedWriter(fileWriter);
-
+            out.write(str);
+            out.newLine();
+            out.close();
+            System.out.println("The file was successfully writed");
         }catch (IOException e){
             System.err.println("error!");
         }
